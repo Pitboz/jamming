@@ -9,16 +9,15 @@ function App() {
 
   let searchTerm = '';
 
-  const [searchResults, setSearchResults] = React.useState([{}]);
+  const [searchResults, setSearchResults] = React.useState([]);
 
-  const [playlistName, setPlaylistName] = React.useState("");
-  const [playlistTracks, setPlaylistTracks] = React.useState([{}]);
+  const [playlistName, setPlaylistName] = React.useState("New Playlist");
+  const [playlistTracks, setPlaylistTracks] = React.useState([]);
 
   function addTrack(newTrack) {
     let currentPlaylist = playlistTracks;
 
-    //This check doesn't work
-    if(!currentPlaylist.includes.call(newTrack.id)){
+    if ( ! currentPlaylist.some( (value) => value.id === newTrack.id) ) {
       setPlaylistTracks([
         ...currentPlaylist,
         newTrack
@@ -26,18 +25,11 @@ function App() {
     }
   };
 
-  
-  //Need to rework this function because it doesn't work at all
   function removeTrack(removeTrack) {
     let currentPlaylist = playlistTracks;
-    const indexOfTrack = currentPlaylist.indexOf.call(removeTrack.id);
-    //if(indexOfTrack !== -1){
       setPlaylistTracks(
         currentPlaylist.filter( a => removeTrack.id !== a.id )
       );
-    //}
-
-    setPlaylistTracks(currentPlaylist);
   }
 
   function updatePlaylistName(newName){

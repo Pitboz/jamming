@@ -1,10 +1,10 @@
 let accessToken = "";
 const clientID = 'eac99a1de38544dcb63d442a02b8d39b';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'https://jammin-pit.surge.sh';
 
 const Spotify = {
     getAccessToken() {
-
+        
         if(accessToken) {
             return accessToken;
         }
@@ -21,7 +21,7 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
         }
 
-        if(accessToken.length === 0 && !tokenInURL){
+        if(accessToken.length === 0 && ! tokenInURL){
             window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
         }
     },
