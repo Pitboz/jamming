@@ -7,8 +7,6 @@ import Spotify from '../../util/Spotify';
 
 function App() {
 
-  let searchTerm = '';
-
   const [searchResults, setSearchResults] = React.useState([]);
 
   const [playlistName, setPlaylistName] = React.useState("New Playlist");

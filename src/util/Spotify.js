@@ -3,6 +3,12 @@ const clientID = 'eac99a1de38544dcb63d442a02b8d39b';
 const redirectURI = 'https://jammin-pit.surge.sh';
 
 const Spotify = {
+
+    /**
+     * Method that returns the access token from the Spotify API
+     * @returns accessToken / null
+     */
+
     getAccessToken() {
         
         if(accessToken) {
@@ -19,13 +25,19 @@ const Spotify = {
             const expiration = expires[1];
             window.setTimeout(() => accessToken='', expiration * 1000);
             window.history.pushState('Access Token', null, '/');
+            return accessToken;
         }
 
         if(accessToken.length === 0 && ! tokenInURL){
             window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
         }
     },
-    
+
+    /**
+     * Function that sends a search term to the Spotify API and returns an array of tracks
+     * @param {String} term 
+     * @returns array of tracks
+     */
     async search(term) {
         const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`,{
             method: 'GET',
